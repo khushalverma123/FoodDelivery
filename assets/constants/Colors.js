@@ -21,6 +21,9 @@ export const Colors = {
     tabIconDefault: "#9ba1a6",
     tabIconSelected: tintColorDark,
   },
+  field:{
+    input:'#f0f5fa'
+  },
   PRIMARY: primary,
   SECONDARY: secondary,
   TERTIARY: tertiary,
