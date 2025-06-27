@@ -3,6 +3,7 @@ const tintColorDark = "#fff";
 const primary = "#FF7622";
 const secondary = "#646982";
 const tertiary = "#121322";
+const bgcolor = "#fff";
 export const Colors = {
   light: {
     text: "#11181C",
@@ -26,4 +27,5 @@ export const Colors = {
   PRIMARY: primary,
   SECONDARY: secondary,
   TERTIARY: tertiary,
+  BGCOLOR: bgcolor,
 };

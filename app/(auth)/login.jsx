@@ -6,44 +6,61 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
-  const getToken = async () => {
-    try {
-      const token = await AsyncStorage.getItem("token");
-      if (token) {
-        console.log("Stored token:", token);
-      }
-    } catch (e) {
-      console.error("Error reading token", e);
-    }
-  };
-  const handleLogin = () => {
+  const { loading } = useSelector((state) => state.login);
+
+  const handleLogin = async () => {
     const FormData = {
       email: email,
       password: password,
     };
-    dispatch(loginUser(FormData))
-      .unwrap()
-      .then((data) => {
+
+    try {
+      const result = await dispatch(loginUser(FormData));
+      if (loginUser.fulfilled.match(result)) {
+        if (isChecked) {
+          await AsyncStorage.setItem("email", email);
+          await AsyncStorage.setItem("password", password);
+        } else {
+          await AsyncStorage.removeItem("email");
+          await AsyncStorage.removeItem("password");
+        }
         router.replace("/(drawer)");
-        console.log("Login successful", data);
-      })
-      .catch((err) => {
-        console.log("Login failed", err);
-      });
+      } else {
+        console.error("Login failed:", result.payload);
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+    }
   };
   useEffect(() => {
-    getToken();
-  });
+    const loadSavedCredentials = async () => {
+      try {
+        const savedEmail = await AsyncStorage.getItem("email");
+        const savedPassword = await AsyncStorage.getItem("password");
+
+        if (savedEmail && savedPassword) {
+          setEmail(savedEmail);
+          setPassword(savedPassword);
+          setChecked(true);
+        }
+      } catch (error) {
+        console.error("Error loading saved credentials:", error);
+      }
+    };
+
+    loadSavedCredentials();
+  }, []);
   return (
     <SafeAreaView
       style={{
@@ -114,10 +131,20 @@ const Login = () => {
             marginVertical: 40,
           }}
           onPress={handleLogin}
+          disabled={loading}
         >
-          <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
-            Log in
-          </Text>
+          {loading ? (
+            <View className="flex-row justify-center gap-5">
+              <ActivityIndicator size={"small"} color={Colors.SECONDARY} />
+              <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
+                Log in
+              </Text>
+            </View>
+          ) : (
+            <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
+              Log in
+            </Text>
+          )}
         </TouchableOpacity>
         <View className="flex-row gap-3 justify-center">
           <Text className="text-lg">Don't have an account?</Text>
