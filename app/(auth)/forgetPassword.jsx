@@ -4,8 +4,45 @@ import FTextInput from "@/components/FTextInput";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { forgetPassword } from "@/redux/slices/forgetPasswordSlice";
+import { useDispatch } from "react-redux";
+import { useRouter, useNavigation } from "expo-router";
+import { ActivityIndicator } from "react-native";
+
 const ForgetPassword = () => {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState("");
+  const [loading , setLoading] = useState(false)
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const router = useRouter();
+
+  const handleForget = () => {
+    if (!email) {
+      Alert.alert("Error", "Please enter your email address.");
+      return;
+    }
+
+    setLoading(true); 
+
+    const FormData = {
+      email: email,
+    };
+
+    dispatch(forgetPassword(FormData))
+      .unwrap()
+      .then((data) => {
+        setLoading(false); // Set loading state to false on success
+        router.push("./verification");
+        console.log("Navigated to the verification", data);
+      })
+      .catch((err) => {
+        setLoading(false); // Set loading state to false on error
+        console.log("Unable to send the OTP");
+        // Alert.alert("Error", err?.message || "Something went wrong!");
+      });
+  };
+
+
   return (
     <SafeAreaView
       style={{
@@ -56,9 +93,13 @@ const ForgetPassword = () => {
             borderRadius: 10,
             marginVertical: 20,
           }}
+          onPress={handleForget}
         >
-          <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
-            Send Code
+          <Text
+            className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase "
+       
+          >
+            {loading ? <ActivityIndicator color="#fff" /> : "Send Code"}
           </Text>
         </TouchableOpacity>
       </View>
