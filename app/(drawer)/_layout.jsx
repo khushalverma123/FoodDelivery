@@ -6,7 +6,7 @@ const DrawerLayout = () => {
   return (
     <Drawer
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
       }}
       initialRouteName="index"
     >

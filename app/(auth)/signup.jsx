@@ -2,11 +2,17 @@ import { Colors } from "@/assets/constants/Colors";
 import BackBtn from "@/components/BackBtn";
 import FTextInput from "@/components/FTextInput";
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View, ScrollView } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "expo-router";
 import { signUpUser } from "@/redux/slices/signUpSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Signup = () => {
   const [email, setEmail] = useState();
@@ -16,6 +22,8 @@ const Signup = () => {
   const [name, setName] = useState();
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const { loading } = useSelector((state) => state.signup);
+
   const handleSignUp = () => {
     const FormData = {
       email: email,
@@ -119,10 +127,20 @@ const Signup = () => {
               marginVertical: 40,
             }}
             onPress={handleSignUp}
+            disabled={loading}
           >
-            <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
-              Sign Up
-            </Text>
+            {loading ? (
+              <View className="flex-row justify-center gap-5">
+                <ActivityIndicator size={"small"} color={Colors.SECONDARY} />
+                <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
+                  Sign up
+                </Text>
+              </View>
+            ) : (
+              <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
+                Sign up
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       </ScrollView>
