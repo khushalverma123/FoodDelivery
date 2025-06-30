@@ -9,27 +9,28 @@ import { Colors } from "@/assets/constants/Colors";
 const verification = () => {
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputRefs = useRef([]);
-  const [timeLeft, setTimeLeft] = useState(30); // Countdown timer for resend
-  const [canResend, setCanResend] = useState(false); // Flag to enable resend button
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [canResend, setCanResend] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (timeLeft === 0) {
-      setCanResend(true); // Enable resend after countdown reaches 0
+      setCanResend(true);
     } else {
       const timer = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
-      }, 1000); // Update every second
+      }, 1000);
 
-      // Clear timer when countdown finishes
       return () => clearInterval(timer);
     }
   }, [timeLeft]);
 
   const handleChange = (text, index) => {
+    console.log("text", text);
     let newOtp = [...otp];
     newOtp[index] = text;
     setOtp(newOtp);
+    console.log("index", index);
 
     if (text && index < otp.length - 1) {
       setCurrentIndex(index + 1);
@@ -48,6 +49,7 @@ const verification = () => {
   };
 
   const handleSubmit = () => {
+    console.log("otp found", otp);
     if (otp.join("").length === otp.length) {
       Alert.alert("OTP Submitted", `Entered OTP: ${otp.join("")}`);
     } else {
@@ -91,7 +93,9 @@ const verification = () => {
         }}
       >
         <View className="flex-row justify-between p-1">
-          <Text className="text-sm font-medium" style={{color:'grey'}}>CODE</Text>
+          <Text className="text-sm font-medium" style={{ color: "grey" }}>
+            CODE
+          </Text>
           <Text className="text-sm font-bold">
             {timeLeft > 0 ? (
               <>
@@ -99,7 +103,7 @@ const verification = () => {
                   <Text className="font-bold underline tracking-wide ml-10">
                     Resend
                   </Text>{" "}
-                  <Text style={{color:'grey'}}>{`in ${timeLeft} sec`}</Text>
+                  <Text style={{ color: "grey" }}>{`in ${timeLeft} sec`}</Text>
                 </Text>
               </>
             ) : (
@@ -117,10 +121,15 @@ const verification = () => {
               ref={(el) => (inputRefs.current[index] = el)}
               style={[
                 styles.otpInput,
-                { backgroundColor: Colors.field.input, padding: 30 },
+                {
+                  backgroundColor: Colors.field.input,
+                  paddingVertical: 12, // reasonable padding
+                  paddingHorizontal: 0,
+                  color: "#000", // ensures text is visible
+                },
               ]}
               maxLength={1}
-              keyboardType="numeric"
+              keyboardType="number-pad"
               value={digit}
               onChangeText={(text) => handleChange(text, index)}
               onFocus={() => setCurrentIndex(index)}

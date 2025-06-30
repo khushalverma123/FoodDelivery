@@ -10,7 +10,7 @@ const Button = ({ label }) => {
         backgroundColor: Colors.PRIMARY,
         padding: 20,
         borderRadius: 10,
-        marginVertical: 40,
+        marginVertical: 0,
       }}
     >
       <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase">

@@ -11,7 +11,7 @@ import { ActivityIndicator } from "react-native";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
-  const [loading , setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const router = useRouter();
@@ -22,7 +22,7 @@ const ForgetPassword = () => {
       return;
     }
 
-    setLoading(true); 
+    setLoading(true);
 
     const FormData = {
       email: email,
@@ -33,7 +33,6 @@ const ForgetPassword = () => {
       .then((data) => {
         setLoading(false); // Set loading state to false on success
         router.push("./verification");
-        console.log("Navigated to the verification", data);
       })
       .catch((err) => {
         setLoading(false); // Set loading state to false on error
@@ -41,7 +40,6 @@ const ForgetPassword = () => {
         // Alert.alert("Error", err?.message || "Something went wrong!");
       });
   };
-
 
   return (
     <SafeAreaView
@@ -95,10 +93,7 @@ const ForgetPassword = () => {
           }}
           onPress={handleForget}
         >
-          <Text
-            className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase "
-       
-          >
+          <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
             {loading ? <ActivityIndicator color="#fff" /> : "Send Code"}
           </Text>
         </TouchableOpacity>

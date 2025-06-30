@@ -7,12 +7,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export const forgetPassword = createAsyncThunk(
     "auth/forgetPassword",
     async (credentials, { rejectWithValue }) => {
-        console.log("forgetPasword end points", forgetPasswordEndPoint);
 
-        console.log("credentials", credentials)
         try {
             const response = await axiosInstance.post(forgetPasswordEndPoint, credentials);
-            console.log(response, "response")
             return response.data;
         } catch (error) {
             if (error.response && error.response.data) {
