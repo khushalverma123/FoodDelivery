@@ -17,10 +17,10 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Searchbar } from "react-native-paper";
 import Entypo from "@expo/vector-icons/Entypo";
 import CategoryItem from "@/components/CategoryItem";
-import itemImg1 from "../../assets/images/item1.png";
-import itemImg2 from "../../assets/images/item2.png";
-import itemImg3 from "../../assets/images/item3.png";
-import itemImg4 from "../../assets/images/item4.png";
+import RestaurantItem from "@/components/RestaurantItem";
+import { CategoryData } from "../utils/CategoryData";
+import OpenRestaurants from "@/components/OpenRestaurants";
+
 const Home = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const router = useRouter();
@@ -34,33 +34,32 @@ const Home = () => {
       console.error("Error logging out:", error);
     }
   };
-  const CategoryData = [
-    {
-      id: 1,
-      title: "all",
-      image: itemImg1,
-    },
-    {
-      id: 2,
-      title: "asdasd",
-      image: itemImg2,
-    },
-    {
-      id: 3,
-      title: "alasdasdl",
-      image: itemImg3,
-    },
-    {
-      id: 4,
-      title: "alasdsdl",
-      image: itemImg4,
-    },
-    {
-      id: 5,
-      title: "alasdsdl",
-      image: itemImg4,
-    },
-  ];
+  //   {
+  //     id: 1,
+  //     title: "all",
+  //     image: itemImg1,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "asdasd",
+  //     image: itemImg2,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "alasdasdl",
+  //     image: itemImg3,
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "alasdsdl",
+  //     image: itemImg4,
+  //   },
+  //   {
+  //     id: 5,
+  //     title: "alasdsdl",
+  //     image: itemImg4,
+  //   },
+  // ];
   return (
     <SafeAreaView
       style={{
@@ -84,22 +83,28 @@ const Home = () => {
           onChangeText={setSearchQuery}
           value={searchQuery}
         />
-        <View>
+        <View className="mt-4">
           <View className="flex-row justify-between items-center mt-3">
-            <Text className="text-2xl">All Categories</Text>
-            <TouchableOpacity className="flex-row">
+            <Text className="text-xl">All Categories</Text>
+            <TouchableOpacity
+              className="flex-row"
+              onPress={() => router.push("./screens/AllCategory")}
+            >
               <Text className="text-lg">See All</Text>
               <Entypo name="chevron-small-right" size={24} color="black" />
             </TouchableOpacity>
           </View>
           <FlatList
-          horizontal
-          showsHorizontalScrollIndicator={false}
+            horizontal
+            showsHorizontalScrollIndicator={false}
             data={CategoryData}
             keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => <CategoryItem title={item.title} image={item.image} />}
+            renderItem={({ item }) => (
+              <CategoryItem title={item.title} image={item.image} />
+            )}
           />
         </View>
+        <OpenRestaurants />
         <TouchableOpacity onPress={handleLogout}>
           <Text>Logout</Text>
         </TouchableOpacity>

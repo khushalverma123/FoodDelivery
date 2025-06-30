@@ -32,10 +32,10 @@ const acessLocation = () => {
         }}
       >
         <View>
-          <Image
+          {/* <Image
             style={{ width: "100%" }}
             source={require("../../assets/images/")}
-          />
+          /> */}
         </View>
         <Text>Hello</Text>
       </View>

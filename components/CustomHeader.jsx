@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import { FontAwesome6, Feather } from "@expo/vector-icons";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 
-const CustomHeader = ({ title }) => {
+const CustomHeader = () => {
   const router = useRouter();
   const navigation = useNavigation();
 
