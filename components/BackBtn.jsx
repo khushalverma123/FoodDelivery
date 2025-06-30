@@ -6,7 +6,7 @@ const BackBtn = () => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
-      className="absolute top-5 left-5 bg-[#fff] rounded-full"
+      className=" bg-[#ecf0f4] rounded-full"
       onPress={() => navigation.goBack()}
     >
       <Entypo name="chevron-with-circle-left" size={35} color="black" />

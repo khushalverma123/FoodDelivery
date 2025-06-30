@@ -46,7 +46,6 @@ const Signup = () => {
       style={{
         flex: 1,
         backgroundColor: Colors.TERTIARY,
-        justifyContent: "center",
       }}
     >
       <View
@@ -58,7 +57,9 @@ const Signup = () => {
           position: "relative",
         }}
       >
-        <BackBtn />
+        <View className="absolute top-5 left-5">
+          <BackBtn />
+        </View>
         <Text className="text-white text-center font-bold tracking-wider text-3xl">
           Sign Up
         </Text>
