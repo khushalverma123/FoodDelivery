@@ -110,6 +110,7 @@ const Login = () => {
             placeholder="Enter your password"
           />
         </View>
+
         <View className="flex-row justify-between mt-3">
           <View className="flex-row gap-2">
             <Checkbox
