@@ -1,8 +1,13 @@
 import DropDownPicker from "react-native-dropdown-picker";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ScrollView } from "react-native-gesture-handler";
 import BackBtn from "@/components/BackBtn";
 import { Colors } from "@/assets/constants/Colors";
 import { FontAwesome6, Feather } from "@expo/vector-icons";
@@ -30,7 +35,7 @@ const AllCategory = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View className="flex-row items-center justify-between">
           <BackBtn />
-          <View style={{ width: 150 }}>
+          <View style={{ width: 150, zIndex: 1000, elevation: 10 }}>
             <DropDownPicker
               open={open}
               value={value}
@@ -45,6 +50,7 @@ const AllCategory = () => {
               animationDuration={300}
             />
           </View>
+
           <TouchableOpacity className="bg-[#ecf0f4] p-3 rounded-full">
             <Feather name="search" size={21} color="#000" />
           </TouchableOpacity>
@@ -61,13 +67,18 @@ const AllCategory = () => {
 export default AllCategory;
 const styles = StyleSheet.create({
   dropdown: {
-    borderRadius: 50,
     borderWidth: 1,
     borderColor: "lightgrey",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    backgroundColor: "#fff",
+    zIndex: 1000,
   },
-  dropDownContainerStyle: {},
+  dropDownContainerStyle: {
+    borderWidth: 1,
+    borderColor: "lightgrey",
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    zIndex: 999,
+  },
 });
