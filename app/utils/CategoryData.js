@@ -5,27 +5,27 @@ import itemImg4 from "../../assets/images/item4.png";
 export const CategoryData = [
   {
     id: 1,
-    title: "all",
+    title: "Burger",
     image: itemImg1,
   },
   {
     id: 2,
-    title: "asdasd",
+    title: "Sandwich",
     image: itemImg2,
   },
   {
     id: 3,
-    title: "alasdasdl",
+    title: "Pizza",
     image: itemImg3,
   },
   {
     id: 4,
-    title: "alasdsdl",
+    title: "Passta",
     image: itemImg4,
   },
   {
     id: 5,
-    title: "alasdsdl",
+    title: "Coldrink",
     image: itemImg4,
   },
 ];

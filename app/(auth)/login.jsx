@@ -6,14 +6,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity, View,ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [isChecked, setChecked] = useState(false);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -69,6 +68,7 @@ const Login = () => {
         justifyContent: "center",
       }}
     >
+    
       <View
         style={{
           height: "30%",
@@ -84,6 +84,7 @@ const Login = () => {
           Please sign in to you existing account
         </Text>
       </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={{flexGrow:1,backgroundColor:"#fff"}}>
       <View
         style={{
           backgroundColor: "#fff",
@@ -111,6 +112,8 @@ const Login = () => {
           />
         </View>
 
+       
+
         <View className="flex-row justify-between mt-3">
           <View className="flex-row gap-2">
             <Checkbox
@@ -120,7 +123,7 @@ const Login = () => {
             />
             <Text className="text-[#909090]">Remember me</Text>
           </View>
-          <TouchableOpacity onPress={() => router.push("./forgetPassword")}>
+          <TouchableOpacity onPress={() => router.push("../screens/AllCategory")}>
             <Text style={{ color: Colors.PRIMARY }}>Forgot Password</Text>
           </TouchableOpacity>
         </View>
@@ -164,6 +167,7 @@ const Login = () => {
           <SocialBtn name="apple" bgColor="#1b1e2e" />
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
