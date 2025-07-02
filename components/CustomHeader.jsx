@@ -27,7 +27,7 @@ const CustomHeader = () => {
       <View className="relative">
         <TouchableOpacity
           className="bg-[#ecf0f4] p-4 rounded-full"
-          onPress={() => router.push("./screens/Cart")}
+          onPress={() => router.push("./(screens)/Cart")}
         >
           <Feather name="shopping-bag" size={25} color="#000" />
         </TouchableOpacity>

@@ -71,9 +71,7 @@ const Home = () => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <CustomHeader />
         <View>
-          <TouchableOpacity
-            onPress={() => router.push("./screens/RestaurantDetail")}
-          >
+          <TouchableOpacity onPress={() => router.push("./screens/Profile")}>
             <Text style={{ color: Colors.PRIMARY }}>Forgot Password</Text>
           </TouchableOpacity>
         </View>
@@ -95,7 +93,7 @@ const Home = () => {
             <Text className="text-xl">All Categories</Text>
             <TouchableOpacity
               className="flex-row"
-              onPress={() => router.push("./screens/AllCategory")}
+              onPress={() => router.push("./(screens)/AllCategory")}
             >
               <Text className="text-lg">See All</Text>
               <Entypo name="chevron-small-right" size={24} color="black" />

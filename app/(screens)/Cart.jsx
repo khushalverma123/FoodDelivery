@@ -32,7 +32,7 @@ const Cart = () => {
           </Text>
         </TouchableOpacity>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ padding: 10 }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{ padding: 10}}>
         <View>
           <FlatList
             data={CategoryData}

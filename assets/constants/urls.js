@@ -1,4 +1,4 @@
-export const BASEURL = "https://f0b5-103-21-54-174.ngrok-free.app/api/v1";
+export const BASEURL = "https://eeb3-103-21-54-174.ngrok-free.app";
 export const LoginEndPoint = "/auth/sign-in";
 export const SignUpEndPoint = "/auth/sign-up";
 export const forgetPasswordEndPoint = "/auth/forgate-password";
