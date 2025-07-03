@@ -6,7 +6,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Checkbox from "expo-checkbox";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Text, TouchableOpacity, View,ScrollView } from "react-native";
+import {
+  ActivityIndicator,
+  Text,
+  TouchableOpacity,
+  View,
+  ScrollView,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -68,7 +74,6 @@ const Login = () => {
         justifyContent: "center",
       }}
     >
-    
       <View
         style={{
           height: "30%",
@@ -84,89 +89,92 @@ const Login = () => {
           Please sign in to you existing account
         </Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} style={{flexGrow:1,backgroundColor:"#fff"}}>
-      <View
-        style={{
-          backgroundColor: "#fff",
-          width: "100%",
-          height: "70%",
-          padding: 25,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-        }}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ flexGrow: 1, backgroundColor: "#fff" }}
       >
-        <View>
-          <FTextInput
-            label="Email"
-            type="email"
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Enter your Email"
-          />
-          <FTextInput
-            label="Password"
-            type="password"
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Enter your password"
-          />
-        </View>
-
-       
-
-        <View className="flex-row justify-between mt-3">
-          <View className="flex-row gap-2">
-            <Checkbox
-              value={isChecked}
-              onValueChange={setChecked}
-              color={isChecked ? Colors.PRIMARY : undefined}
-            />
-            <Text className="text-[#909090]">Remember me</Text>
-          </View>
-          <TouchableOpacity onPress={() => router.push("../screens/AllCategory")}>
-            <Text style={{ color: Colors.PRIMARY }}>Forgot Password</Text>
-          </TouchableOpacity>
-        </View>
-        <TouchableOpacity
+        <View
           style={{
-            backgroundColor: Colors.PRIMARY,
-            padding: 20,
-            borderRadius: 10,
-            marginVertical: 40,
+            backgroundColor: "#fff",
+            width: "100%",
+            height: "70%",
+            padding: 25,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
           }}
-          onPress={handleLogin}
-          disabled={loading}
         >
-          {loading ? (
-            <View className="flex-row justify-center gap-5">
-              <ActivityIndicator size={"small"} color={Colors.SECONDARY} />
+          <View>
+            <FTextInput
+              label="Email"
+              type="email"
+              value={email}
+              onChangeText={setEmail}
+              placeholder="Enter your Email"
+            />
+            <FTextInput
+              label="Password"
+              type="password"
+              value={password}
+              onChangeText={setPassword}
+              placeholder="Enter your password"
+            />
+          </View>
+
+          <View className="flex-row justify-between mt-3">
+            <View className="flex-row gap-2">
+              <Checkbox
+                value={isChecked}
+                onValueChange={setChecked}
+                color={isChecked ? Colors.PRIMARY : undefined}
+              />
+              <Text className="text-[#909090]">Remember me</Text>
+            </View>
+            <TouchableOpacity onPress={() => router.push("/forgetPassword")}>
+              <Text style={{ color: Colors.PRIMARY }}>Forgot Password</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.PRIMARY,
+              padding: 20,
+              borderRadius: 10,
+              marginVertical: 40,
+            }}
+            onPress={handleLogin}
+            disabled={loading}
+          >
+            {loading ? (
+              <View className="flex-row justify-center gap-5">
+                <ActivityIndicator size={"small"} color={Colors.SECONDARY} />
+                <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
+                  Log in
+                </Text>
+              </View>
+            ) : (
               <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
                 Log in
               </Text>
-            </View>
-          ) : (
-            <Text className="text-[#fff] text-center font-bold tracking-wider text-lg uppercase ">
-              Log in
-            </Text>
-          )}
-        </TouchableOpacity>
-        <View className="flex-row gap-3 justify-center">
-          <Text className="text-lg">Don't have an account?</Text>
-          <TouchableOpacity onPress={() => router.push("./signup")}>
-            <Text className="text-lg uppercase color-[#FF7622] font-bold">
-              sign up
-            </Text>
+            )}
           </TouchableOpacity>
+          <View className="flex-row gap-3 justify-center">
+            <Text className="text-lg">Don't have an account?</Text>
+            <TouchableOpacity onPress={() => router.push("./signup")}>
+              <Text className="text-lg uppercase color-[#FF7622] font-bold">
+                sign up
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <Text
+            style={{ marginVertical: 15, textAlign: "center", fontSize: 18 }}
+          >
+            Or
+          </Text>
+          <View className="flex-row justify-evenly">
+            <SocialBtn name="facebook" bgColor="#385898" />
+            <SocialBtn name="twitter" bgColor="#169ce8" />
+            <SocialBtn name="apple" bgColor="#1b1e2e" />
+          </View>
         </View>
-        <Text style={{ marginVertical: 15, textAlign: "center", fontSize: 18 }}>
-          Or
-        </Text>
-        <View className="flex-row justify-evenly">
-          <SocialBtn name="facebook" bgColor="#385898" />
-          <SocialBtn name="twitter" bgColor="#169ce8" />
-          <SocialBtn name="apple" bgColor="#1b1e2e" />
-        </View>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );

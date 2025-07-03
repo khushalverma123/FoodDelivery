@@ -7,7 +7,7 @@ import { CategoryData } from "../app/utils/CategoryData";
 
 const OpenRestaurants = () => {
   return (
-    <View className="mt-4 mb-4">
+    <View className="mt-2 mb-4">
       <View className="flex-row justify-between items-center mt-3">
         <Text className="text-xl">Open Restaurants</Text>
         <TouchableOpacity className="flex-row">

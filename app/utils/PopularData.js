@@ -1,10 +1,10 @@
-import itemImg1 from "../../assets/images/rest4.jpg";
-import itemImg2 from "../../assets/images/rest5.jpg";
-import itemImg3 from "../../assets/images/rest3.webp";
-import itemImg4 from "../../assets/images/rest1.jpg";
-import itemImg5 from "../../assets/images/rest2.webp";
+import itemImg1 from "../../assets/images/burger.jpeg";
+import itemImg2 from "../../assets/images/burger2.jpeg";
+import itemImg3 from "../../assets/images/burger3.jpg";
+import itemImg4 from "../../assets/images/burger4.jpg";
+import itemImg5 from "../../assets/images/burger5.jpg";
 
-export const CategoryData = [
+export const PopularData = [
   {
     id: 1,
     title: "The Curry Junction",

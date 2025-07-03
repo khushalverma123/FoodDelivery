@@ -19,38 +19,48 @@ import {
   Feather,
 } from "@expo/vector-icons";
 import InfoRow from "@/components/InfoItem";
+import { useRouter } from "expo-router";
+const router = useRouter();
 
 const personalInfo = () => {
   return (
-    <SafeAreaView style={{ flex: 1, padding: 10 }}>
-      <CustomHeaderTop name="Personal Info" />
+    <SafeAreaView style={{ flex: 1, padding: 15 }}>
+      <CustomHeaderTop 
+      name="Personal Info"
+      editOption="Edit"
+      />
       <View className="mt-5">
         <ProfileIntro />
       </View>
 
       <View>
-      <View className="bg-gray-200 py-5 rounded-2xl overflow-hidden">
-        <InfoRow
-          iconLib="AntDesign"
-          iconName="user"
-          label="FULL NAME"
-          value="Vishal Khadok"
-        />
+        <View className="bg-gray-200 py-5 mt-10 rounded-2xl overflow-hidden">
+          <InfoRow
+            iconLib="AntDesign"
+            iconName="user"
+            label="FULL NAME"
+            value="Vishal Khadok"
+            iconColor = "orange"
+          />
 
-        <InfoRow
-          iconLib="Feather"
-          iconName="phone"
-          label="PHONE"
-          value="+91 9876543210"
-        />
+          <InfoRow
+            iconLib="MaterialCommunityIcons"
+            iconName="email-outline"
+            label="EMAIL"
+            value="vishal@example.com"
+            iconColor = "purple"
 
-        <InfoRow
-          iconLib="MaterialCommunityIcons"
-          iconName="email-outline"
-          label="EMAIL"
-          value="vishal@example.com"
-        />
-      </View>
+          />
+
+          <InfoRow
+            iconLib="Feather"
+            iconName="phone"
+            label="PHONE"
+            value="+91 9876543210"
+            iconColor = "mediumturquoise"
+
+          />
+        </View>
       </View>
       {/* <View className="flex-row px-6 py-2 items-center justify-between">
         <View className="flex-row items-center gap-5">

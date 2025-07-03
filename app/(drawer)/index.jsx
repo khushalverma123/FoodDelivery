@@ -70,11 +70,6 @@ const Home = () => {
     >
       <ScrollView showsVerticalScrollIndicator={false}>
         <CustomHeader />
-        <View>
-          <TouchableOpacity onPress={() => router.push("./screens/Profile")}>
-            <Text style={{ color: Colors.PRIMARY }}>Forgot Password</Text>
-          </TouchableOpacity>
-        </View>
         <View className="flex-row gap-2 mb-3">
           <Text className="text-lg">Hey Halal,</Text>
           <Text className="text-lg font-bold">Good Afternoon!</Text>
