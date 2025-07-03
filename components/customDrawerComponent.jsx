@@ -78,7 +78,7 @@ const Profile = () => {
               iconName="shopping-bag"
               iconColor="blue"
               name="Cart"
-              path="/cart"
+              path="/Cart"
             />
             <ProfileItem
               iconLib="MaterialIcons"

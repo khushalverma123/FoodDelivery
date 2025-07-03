@@ -20,7 +20,7 @@ const InfoRow = ({
   iconName,
   label,
   value,
-  iconColor = "orange",
+  iconColor ,
   bgColor = "white",
 }) => {
   const IconComponent = iconLibraries[iconLib];

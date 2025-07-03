@@ -4,30 +4,30 @@ import itemImg3 from "../../assets/images/rest3.webp";
 import itemImg4 from "../../assets/images/rest1.jpg";
 import itemImg5 from "../../assets/images/rest2.webp";
 
-export const CategoryData = [
+export const MenueData = [
   {
     id: 1,
-    title: "The Curry Junction",
+    title: "Burger",
     image: itemImg1,
   },
   {
     id: 2,
-    title: "Flavors of India",
+    title: "SandWich",
     image: itemImg2,
   },
   {
     id: 3,
-    title: "Tandoor & Spice Hub",
+    title: "Pizza",
     image: itemImg3,
   },
   {
     id: 4,
-    title: "Urban Tadka House",
+    title: "Pasta",
     image: itemImg4,
   },
   {
     id: 5,
-    title: "Royal Thali Corner",
+    title: "Dhosa",
     image: itemImg5,
   },
 ];

@@ -1,6 +1,6 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { CategoryData } from "../app/utils/CategoryData";
+import { PopularData } from "../app/utils/PopularData";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { Colors } from "@/assets/constants/Colors";
 
@@ -10,7 +10,7 @@ const PopularProduct = () => {
   const handleAddCart = (itemId) => {
     setCartItems((prevState) => ({
       ...prevState,
-      [itemId]: !prevState[itemId], 
+      [itemId]: !prevState[itemId],
     }));
   };
 
@@ -22,7 +22,6 @@ const PopularProduct = () => {
         style={{
           flex: 1,
           margin: 8,
-          padding: 8,
           borderRadius: 10,
           shadowColor: "#000",
           shadowOffset: { width: 5, height: 5 },
@@ -36,7 +35,7 @@ const PopularProduct = () => {
           style={{ width: "100%", height: 100, borderRadius: 10 }}
           resizeMode="cover"
         />
-        <View className="flex flex-col gap-1">
+        <View className="flex flex-col gap-1 mt-2">
           <Text className="text-lg font-bold leading-none">{item.title}</Text>
           <Text className="text-[13px] text-[grey]">Rose Garden</Text>
           <Text className="text-[18px] font-bold">$40</Text>
@@ -56,7 +55,7 @@ const PopularProduct = () => {
   };
 
   return (
-    <View style={{ marginTop: 16, marginBottom: 16 }}>
+    <View style={{ marginTop: 8, marginBottom: 16 }}>
       <View
         style={{
           flexDirection: "row",
@@ -69,10 +68,10 @@ const PopularProduct = () => {
         </Text>
       </View>
       <FlatList
-        contentContainerStyle={{ paddingHorizontal: 10 }}
+        contentContainerStyle={{ paddingHorizontal: 0 }}
         columnWrapperStyle={{ justifyContent: "space-between" }}
         showsVerticalScrollIndicator={false}
-        data={CategoryData}
+        data={PopularData}
         numColumns={2}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}

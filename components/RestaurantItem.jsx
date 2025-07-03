@@ -1,7 +1,10 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { FontAwesome6, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "@/assets/constants/Colors";
+import { useRouter } from "expo-router";
+const router = useRouter();
+
 
 const RestaurantItem = ({ item }) => {
   const tags = [
@@ -23,7 +26,9 @@ const RestaurantItem = ({ item }) => {
     },
   ];
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container}
+    onPress={()=>router.push("/RestaurantDetail")}
+    >
       <Image source={item.image} style={styles.image} />
       <View className="gap-2 m-2">
         <Text style={styles.title}>{item.title}</Text>
@@ -50,15 +55,15 @@ const RestaurantItem = ({ item }) => {
           </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
 export default RestaurantItem;
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
-    margin: 5,
+    marginTop: 20,
+    marginBottom: 10,
     shadowColor: "#000",
     shadowOffset: { width: 3, height: 5 },
     shadowOpacity: 0.1,
@@ -73,7 +78,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "600",
+    fontWeight: "500",
     color: "#333",
     textTransform: "capitalize",
   },
